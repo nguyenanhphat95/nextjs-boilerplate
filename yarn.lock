@@ -8131,9 +8131,9 @@ rc-dropdown@~4.2.0:
     rc-util "^5.17.0"
 
 rc-field-form@~2.2.0:
-  version "2.2.0"
-  resolved "https://artifactory.navercorp.com:443/artifactory/api/npm/npm-naver/rc-field-form/-/rc-field-form-2.2.0.tgz#1e8d1f1d6514ec2ab7cd7e8e0aa49854416bc009"
-  integrity sha512-Kl7wBXCmFbRi9aPw0yiRTSPH3WQGRnOVGX/UxlEjAz2pGwsaw2MisCJ7GTXukdiybYsw8K7agDD7ZsPGUNcDKg==
+  version "2.2.1"
+  resolved "https://artifactory.navercorp.com:443/artifactory/api/npm/npm-naver/rc-field-form/-/rc-field-form-2.2.1.tgz#0a8c76a0103535c229311dac7f91d32ea13cd3bc"
+  integrity sha512-uoNqDoR7A4tn4QTSqoWPAzrR7ZwOK5I+vuZ/qdcHtbKx+ZjEsTg7QXm2wk/jalDiSksAQmATxL0T5LJkRREdIA==
   dependencies:
     "@babel/runtime" "^7.18.0"
     "@rc-component/async-validator" "^5.0.3"

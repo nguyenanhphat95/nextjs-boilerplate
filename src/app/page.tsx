@@ -1,21 +1,9 @@
-import { TodoList } from "@/features/todo";
+import { TodoList, getListTodo } from "@/features/todo";
 
-const LIST_TODO = [
-  {
-    name: 'Study nextjs',
-  },
-  {
-    name: 'Study English'
-  },
-  {
-    name: 'Sleep'
-  }
-]
+export default async function TodoApp() {
+  const { data = [] } = await getListTodo();
 
-export default function TodoApp() {
   return (
-    <main>
-      <TodoList data={LIST_TODO} />
-    </main>
+    <TodoList data={data} />
   )
 }

@@ -1,7 +1,14 @@
+type TodoItemType = {
+  name: string;
+  status: boolean;
+  id: string;
+}
+
 type TodoListProps = {
-  data: { name: string }[];
+  data: TodoItemType[];
 }
 
 export type {
-  TodoListProps
+  TodoListProps,
+  TodoItemType
 }
