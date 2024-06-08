@@ -54,7 +54,7 @@ export const fetcher = async <T>({
 
     if (!response.ok) {
       throw new Error(
-        `😢 getApiResponse failed: ${response.status}/${response.statusText} - ${apiEndpoint}`
+        `fetcher failed: ${response.status}/${response.statusText} - ${apiEndpoint}`
       );
     }
 
