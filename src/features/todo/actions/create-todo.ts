@@ -1,15 +1,11 @@
 'use server'
 import { revalidatePath } from "next/cache";
-import { TodoItemType } from "../todo-list/todo-list.types";
-import { fetcher } from "@/utils";
+import { TodoItemType } from "../todo-list/types";
+import { http } from "@/lib";
+import { redirect } from "next/navigation";
 
 export async function createTodo(data: Pick<TodoItemType, 'name'>) {
-  const response = await fetcher({
-    apiEndpoint: '/todo',
-    method: 'POST',
-    requestData: data,
-  });
-
+  await http.post('/todo', data);
   revalidatePath('/');
-  return response;
+  redirect('/');
 }

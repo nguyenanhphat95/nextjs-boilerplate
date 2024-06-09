@@ -1,4 +1,4 @@
-import { TodoItemType } from "../todo-list/todo-list.types"
+import { TodoItemType } from "../todo-list/types"
 
 type TodoFormProps = {
   data?: TodoItemType

@@ -1,16 +1,11 @@
 'use server'
-
 import { revalidatePath } from "next/cache";
-import { TodoItemType } from "../todo-list/todo-list.types";
-import { fetcher } from "@/utils";
+import { TodoItemType } from "../todo-list/types";
+import { http } from "@/lib";
+import { redirect } from "next/navigation";
 
 export async function updateTodo(data: Pick<TodoItemType, 'name' | 'id'>) {
-  const response = await fetcher({
-    apiEndpoint: `/todo/${data.id}`,
-    method: 'PUT',
-    requestData: data
-  });
-
+  await http.put(`/todo${data.id}`, data);
   revalidatePath('/');
-  return response;
+  redirect('/');
 }

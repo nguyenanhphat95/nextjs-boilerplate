@@ -1,9 +1,9 @@
 import { TodoList, getListTodo } from "@/features/todo";
 
 export default async function TodoApp() {
-  const { data = [] } = await getListTodo();
+  const { payload } = await getListTodo();
 
   return (
-    <TodoList data={data} />
+    <TodoList data={payload} />
   )
 }

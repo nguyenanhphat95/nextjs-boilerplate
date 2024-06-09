@@ -1,14 +1,9 @@
 'use server'
 import { revalidatePath } from "next/cache";
-import { TodoItemType } from "../todo-list/todo-list.types";
-import { fetcher } from "@/utils";
+import { TodoItemType } from "../todo-list/types";
+import { http } from "@/lib";
 
 export async function deleteTodo(id: string) {
-  const response = await fetcher<TodoItemType | null>({
-    apiEndpoint: `/todo/${id}`,
-    method: 'DELETE',
-  });
-
+  await http.delete<TodoItemType>(`/todo/${id}`)
   revalidatePath('/');
-  return response;
 }

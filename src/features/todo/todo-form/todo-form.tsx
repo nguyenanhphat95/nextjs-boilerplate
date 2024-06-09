@@ -2,8 +2,7 @@
 import { MyButton, MyInput } from "@/features/ui";
 import { useEffect, useState } from "react";
 import { createTodo } from "../actions/create-todo";
-import { redirect } from "next/navigation";
-import { TodoFormProps } from "./todo-form.types";
+import { TodoFormProps } from "./types";
 import { updateTodo } from "../actions/update-todo";
 
 export function TodoForm({ data }: TodoFormProps) {
@@ -17,12 +16,10 @@ export function TodoForm({ data }: TodoFormProps) {
 
   const handleSubmit = async () => {
     if (data?.id) {
-      await updateTodo({ name, id: data.id })
-      redirect('/')
+      updateTodo({ name, id: data.id })
+      return;
     }
-
-    await createTodo({ name });
-    redirect('/')
+    createTodo({ name });
   }
 
   return (

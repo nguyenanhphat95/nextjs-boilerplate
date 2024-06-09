@@ -6,9 +6,9 @@ type Props = {
   };
 }
 export default async function Edit(props: Props) {
-  const { data } = await getTodo(props.params.id);
+  const { payload } = await getTodo(props.params.id);
 
   return (
-    <TodoForm data={data} />
+    <TodoForm data={payload} />
   )
 }
