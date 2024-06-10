@@ -1,3 +1,5 @@
+import { cookies } from "next/headers";
+
 export const isClient = () => typeof window !== 'undefined';
 
 export const normalizePath = (path: string) => {
@@ -10,4 +12,13 @@ export const isFormData = (body: any) => {
   }
 
   return body instanceof FormData;
+}
+
+export const getAccessToken = () => {
+  if (isClient()) {
+    return localStorage.getItem('accessToken');
+  } else {
+    const cookieStore = cookies();
+    return cookieStore.get('accessToken');
+  }
 }

@@ -1,12 +1,13 @@
 import { redirect } from "next/navigation";
 import { CustomOptionsType } from "./types"
-import { isClient, isFormData, normalizePath } from "./utils";
+import { getAccessToken, isClient, isFormData, normalizePath } from "./utils";
 import { AUTHENTICATION_ERROR_STATUS, ENTITY_ERROR_STATUS } from "./constants";
+import { cookies } from "next/headers";
 
 // let clientLogoutRequest: null | Promise<any> = null
 
 
-// type EntityErrorPayload = {
+// type g = {
 //   message: string
 //   errors: {
 //     field: string
@@ -61,12 +62,10 @@ const request = async <Response>(
     'Content-Type': isFormData(body) ? 'multipart/form-data' : 'application/json'
   }
 
-  // if (isClient()) {
-  //   const sessionToken = localStorage.getItem('sessionToken')
-  //   if (sessionToken) {
-  //     baseHeaders.Authorization = `Bearer ${sessionToken}`
-  //   }
-  // }
+  const accessToken = getAccessToken();
+  if (accessToken) {
+    baseHeaders.Authorization = `Bearer ${accessToken}`;
+  }
 
   const baseUrl =
     options?.baseUrl === undefined
@@ -99,7 +98,7 @@ const request = async <Response>(
   //     throw new EntityError(
   //       data as {
   //         status: 422
-  //         payload: EntityErrorPayload
+  //         payload: g
   //       }
   //     )
   //   } else if (res.status === AUTHENTICATION_ERROR_STATUS) {
