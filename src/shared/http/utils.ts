@@ -1,6 +1,6 @@
-import { cookies } from "next/headers";
-
-export const isClient = () => typeof window !== 'undefined';
+import { isClient } from "@/shared/utils";
+import { CookieClient } from "../cookie-client";
+import { CookieServer } from "../cookie-server";
 
 export const normalizePath = (path: string) => {
   return path.startsWith('/') ? path.slice(1) : path
@@ -16,9 +16,8 @@ export const isFormData = (body: any) => {
 
 export const getAccessToken = () => {
   if (isClient()) {
-    return localStorage.getItem('accessToken');
+    return CookieClient.getAccessToken();
   } else {
-    const cookieStore = cookies();
-    return cookieStore.get('accessToken');
+    return CookieServer.getAccessToken();
   }
 }

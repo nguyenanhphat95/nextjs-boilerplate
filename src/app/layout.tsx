@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import { AuthProvider } from "@/shared/components";
 import "./globals.css";
-
 
 export const metadata: Metadata = {
   title: "Todo app",
@@ -22,7 +22,9 @@ export default function RootLayout({
           <div className="mt-10">
             <div className="flex justify-center">
               <div className="basis-6/12">
-                {children}
+                <AuthProvider>
+                  {children}
+                </AuthProvider>
               </div>
             </div>
           </div>
