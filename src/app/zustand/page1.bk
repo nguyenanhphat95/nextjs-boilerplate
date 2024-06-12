@@ -1,0 +1,61 @@
+'use client'
+import { Input } from 'antd'
+import { create } from 'zustand'
+import { devtools } from 'zustand/middleware'
+import { immer } from 'zustand/middleware/immer'
+
+type State = {
+  firstName: string
+  user: {
+    a: {
+      b: {
+        c: string;
+      }
+    }
+  }
+}
+
+type Action = {
+  updateFirstName: (firstName: State['firstName']) => void
+}
+
+const usePersonStore = create<State & Action>()(
+  devtools(
+    immer((set) => ({
+      firstName: '',
+      user: {
+        a: {
+          b: {
+            c: ''
+          }
+        }
+      },
+      updateFirstName: (firstName) => set((state) => {
+        state.user.a.b.c = firstName;
+      }),
+    })),
+    { name: "personStore" }
+  )
+);
+
+
+export default function ZustandPage() {
+  const user = usePersonStore((state) => state.user)
+  const updateFirstName = usePersonStore((state) => state.updateFirstName)
+
+  return (
+    <main>
+      <label>
+        First name
+        <Input
+          onChange={(e) => updateFirstName(e.currentTarget.value)}
+          value={user.a.b.c}
+        />
+      </label>
+
+      <p>
+        Hello <strong>{user.a.b.c}</strong>
+      </p>
+    </main>
+  )
+}
